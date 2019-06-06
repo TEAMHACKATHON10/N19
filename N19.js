@@ -155,8 +155,7 @@ function mouseClicked() {
     let ux = mouseX;
     let uy = mouseY;
     // skip current game
-    if (WIN == 0 && ux >= 10 && ux <= 70 & uy <= 380 && uy >= 370) {
-        print(ux, uy)
+    if (WIN == 0 && ux >= 10 && ux <= 80 & uy <= 390 && uy >= 360) {
         // back button
         reset();
         return;
@@ -205,7 +204,7 @@ function mouseClicked() {
     }
     if (start == 2) {
         // rule
-        if (ux >= 10 && ux <= 100 && uy <= 370 && uy >= 350) {
+        if (ux >= 10 && ux <= 100 && uy <= 370 && uy >= 340) {
             // back button
             start = 0;
         }
