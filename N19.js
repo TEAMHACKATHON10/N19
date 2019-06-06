@@ -23,6 +23,8 @@ var Click = [[], [], [], [], []];
 let co;
 var x = 60,
     y = 60;
+var a = 3,
+    b = 5;
 var it;
 var Frame = 0;
 var chose = [0, "red", "green", "orange", "blue"];
@@ -207,6 +209,21 @@ function mouseClicked() {
         if (ux >= 10 && ux <= 100 && uy <= 370 && uy >= 340) {
             // back button
             start = 0;
+            return;
+        }
+      if (ux >= 50 && ux <= 100 && uy <= 120 && uy >= 100) {
+            // back button
+            a = 3;
+            b = 5;
+            start = 0;
+            return;
+        }
+      if (ux >= 250 && ux <= 350 && uy <= 120 && uy >= 100) {
+            // back button
+            a = 4;
+            b = 7;
+            start = 0;
+            return;
         }
     }
     for (let i = 0; i < 5; i++) {
@@ -237,8 +254,8 @@ function check() {
         for (let j = 0; j < 5; j++) {
             if (Click[i][j]) {
                 if (col[i][j] == 0) continue;
-                if (val[i][j] % 3 == 0) continue;
-                if (val[i][j] % 5 == 0) continue;
+                if (val[i][j] % a == 0) continue;
+                if (val[i][j] % b == 0) continue;
                 tmp++;
             }
         }
@@ -317,7 +334,7 @@ function rule() {
     textSize(20);
     text("Choose 5 signs which don't have a black ", 10, 30);
     text("border and the number inside isn't divisible", 10, 50);
-    text("by three or five.", 10, 70);
+    text("by ", 10, 70);
     textAlign(CENTER);
     textSize(50);
     fill("blue");
@@ -326,6 +343,10 @@ function rule() {
     textAlign(LEFT);
     textSize(30);
     text("Back", 10, 370);
+    fill("brown");
+    text("3 or 5",50,120);
+    fill("pink");
+    text("4 or 7", 250,120);
 }
 
 function setting() {
@@ -367,9 +388,7 @@ function draw() {
             Table();
         } else {
             if (StartTime - timepassed <= 0 && WIN == 0) WIN = 3;
-            if (WIN == 0) { 
-              display();
-            }
+            if (WIN == 0) display();
             else if (WIN == 1) win();
             else if (WIN == 2) lose();
             else if (WIN == 3) TLE();
