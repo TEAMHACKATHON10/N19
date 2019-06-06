@@ -113,7 +113,15 @@ function Table() {
     }
 }
 
+function back() {
+    fill("purple");
+    textAlign(LEFT);
+    textSize(30);
+    text("Back", 10, 380);
+}
+
 function display() {
+    back();
     for (let i = 0; i < 5; i++) {
         for (let j = 0; j < 5; j++) {
             it = col[i][j];
@@ -146,6 +154,13 @@ function display() {
 function mouseClicked() {
     let ux = mouseX;
     let uy = mouseY;
+    // skip current game
+    if (WIN == 0 && ux >= 10 && ux <= 70 & uy <= 380 && uy >= 370) {
+        print(ux, uy)
+        // back button
+        reset();
+        return;
+    }
     if (WIN > 0) {
         if (ux >= 100 && ux <= 300 && uy <= 320 && uy >= 280) {
             reset();
@@ -267,27 +282,6 @@ function lose() {
     ahihi = 1;
 }
 
-function Snow() {
-    this.X = 0;
-    this.Y = random(-50, 0);
-    this.initialangle = random(0, 2 * PI);
-    this.size = random(3, 10);
-    this.r = sqrt(random((width / 2) * (width / 2)));
-    this.update = function(time) {
-        let w = 0.5;
-        let angle = w * time + this.initialangle;
-        this.X = width / 2 + this.r * sin(angle);
-        this.Y += pow(this.size, 0.5);
-        if (this.Y > height) {
-            let index = SnowRain.indexOf(this);
-            SnowRain.splice(index, 1);
-        }
-    };
-    this.display = function() {
-        ellipse(this.X, this.Y, this.size);
-    };
-}
-
 function TLE() {
     background("black");
     fill("orange");
@@ -333,12 +327,6 @@ function draw() {
         background("black");
         fill("yellow");
         circle(60, 60, 60);
-        fill("white");
-     /*   for (let i = 0; i < 50; i++) {
-            let rx = random(400);
-            let ry = random(400);
-            circle(rx, ry, 2);
-        }*/
         fill("green");
         textAlign(CENTER, BASELINE);
         if (big == 1) textSize(75);
@@ -359,7 +347,9 @@ function draw() {
             Table();
         } else {
             if (StartTime - timepassed <= 0 && WIN == 0) WIN = 3;
-            if (WIN == 0) display();
+            if (WIN == 0) { 
+              display();
+            }
             else if (WIN == 1) win();
             else if (WIN == 2) lose();
             else if (WIN == 3) TLE();
