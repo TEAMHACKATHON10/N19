@@ -344,9 +344,9 @@ function rule() {
     textSize(30);
     text("Back", 10, 370);
     fill("brown");
-    text("3 or 5",50,120);
+    text("3 or 5",50, 120);
     fill("pink");
-    text("4 or 7", 250,120);
+    text("4 or 7", 250, 120);
 }
 
 function setting() {
