@@ -8,7 +8,7 @@ var col = [
 ];
 var big = 1; //
 var start = 0; // 0: menu, 1: play screen, 2: rules, 3: settings
-var StartTime = 10; // starting time
+var StartTime = 20; // starting time
 var SnowRain = [];
 var col2 = [
     // button interior's color
@@ -172,16 +172,16 @@ function mouseClicked() {
         // setting
         if (ux >= 125 && ux <= 275 && uy <= 100 && uy >= 50) {
             // very hard
-            StartTime = 2;
+            StartTime = 5;
         } else if (ux >= 150 && ux <= 220 && uy <= 150 && uy >= 100) {
             // hard
-            StartTime = 4;
+            StartTime = 10;
         } else if (ux >= 130 && ux <= 260 && uy <= 200 && uy >= 150) {
             // normal
-            StartTime = 6;
+            StartTime = 15;
         } else if (ux >= 150 && ux <= 220 && uy <= 250 && uy >= 200) {
             // easy
-            StartTime = 10;
+            StartTime = 20;
         } else {
             return;
         }
@@ -222,9 +222,9 @@ function check() {
     for (let i = 0; i < 5; i++) {
         for (let j = 0; j < 5; j++) {
             if (Click[i][j]) {
-                if (col[i][j] == 0) return false;
-                if (val[i][j] % 3 == 0) return false;
-                if (val[i][j] % 5 == 0) return false;
+                if (col[i][j] == 0) continue;
+                if (val[i][j] % 3 == 0) continue;
+                if (val[i][j] % 5 == 0) continue;
                 tmp++;
             }
         }
@@ -303,7 +303,7 @@ function rule() {
     textSize(20);
     text("Choose 5 signs which don't have a black ", 10, 30);
     text("border and the number inside isn't divisible", 10, 50);
-    text("by three and five.", 10, 70);
+    text("by three or five.", 10, 70);
     textAlign(CENTER);
     textSize(50);
     fill("blue");
@@ -334,11 +334,11 @@ function draw() {
         fill("yellow");
         circle(60, 60, 60);
         fill("white");
-        for (let i = 0; i < 50; i++) {
+     /*   for (let i = 0; i < 50; i++) {
             let rx = random(400);
             let ry = random(400);
             circle(rx, ry, 2);
-        }
+        }*/
         fill("green");
         textAlign(CENTER, BASELINE);
         if (big == 1) textSize(75);
@@ -372,4 +372,3 @@ function draw() {
         rule();
     }
 }
-
