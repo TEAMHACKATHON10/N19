@@ -281,6 +281,27 @@ function lose() {
     ahihi = 1;
 }
 
+function Snow() {
+    this.X = 0;
+    this.Y = random(-50, 0);
+    this.initialangle = random(0, 2 * PI);
+    this.size = random(3, 10);
+    this.r = sqrt(random((width / 2) * (width / 2)));
+    this.update = function(time) {
+        let w = 0.5;
+        let angle = w * time + this.initialangle;
+        this.X = width / 2 + this.r * sin(angle);
+        this.Y += pow(this.size, 0.5);
+        if (this.Y > height) {
+            let index = SnowRain.indexOf(this);
+            SnowRain.splice(index, 1);
+        }
+    };
+    this.display = function() {
+        ellipse(this.X, this.Y, this.size);
+    };
+}
+
 function TLE() {
     background("black");
     fill("orange");
